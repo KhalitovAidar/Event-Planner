@@ -23,6 +23,9 @@ public class User {
     @Column(nullable = false)
     private String username;
 
+    @Column(nullable = false)
+    private String password;
+
     @OneToMany(fetch = LAZY, mappedBy = "user", cascade = PERSIST)
     private List<CommunityRole> communityRoles = new ArrayList<>();
 

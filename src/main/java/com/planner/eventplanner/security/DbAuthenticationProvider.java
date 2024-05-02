@@ -1,6 +1,8 @@
-package com.planner.eventplanner.security.config;
+package com.planner.eventplanner.security;
 
 
+import com.planner.eventplanner.MainAuthentication;
+import com.planner.eventplanner.models.User;
 import com.planner.eventplanner.repositories.UserRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.authentication.AuthenticationProvider;
@@ -10,19 +12,27 @@ import org.springframework.security.core.Authentication;
 import org.springframework.security.core.AuthenticationException;
 import org.springframework.stereotype.Component;
 
+import java.util.UUID;
+
 @Component
 @RequiredArgsConstructor
-class DbAuthenticationProvider implements AuthenticationProvider {
+public class DbAuthenticationProvider implements AuthenticationProvider {
     private final UserRepository userRepository;
 
     @Override
     public Authentication authenticate(Authentication authentication) throws AuthenticationException {
         final var password = authentication.getCredentials().toString();
-        if (!"password".equals(password)) {
+        final var userId = authentication.getPrincipal();
+
+        User user = userRepository.findById((UUID) userId).orElseThrow(() -> new AuthenticationServiceException("User not found"));
+
+        // TODO: change to real password check
+        if (!user.getPassword().equals(password)) {
             throw new AuthenticationServiceException("Invalid username or password");
         }
+
         return userRepository.findByUsername(authentication.getName())
-                .map(user -> new MainAuthentication(user.getId()))
+                .map(userAuth -> new MainAuthentication(userAuth.getId()))
                 .orElseThrow(() -> new AuthenticationServiceException("Invalid username or password"));
     }
 

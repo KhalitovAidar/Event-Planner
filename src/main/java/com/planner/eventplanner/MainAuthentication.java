@@ -1,5 +1,6 @@
-package com.planner.eventplanner.security.config;
+package com.planner.eventplanner;
 
+import lombok.Getter;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.GrantedAuthority;
@@ -10,6 +11,7 @@ import java.util.UUID;
 
 
 @RequiredArgsConstructor
+@Getter
 public class MainAuthentication implements Authentication {
     private final UUID userId;
     private volatile boolean authenticated = true;
