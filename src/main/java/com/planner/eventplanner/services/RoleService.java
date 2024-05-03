@@ -16,12 +16,12 @@ import java.util.UUID;
 @Service
 @RequiredArgsConstructor
 public class RoleService {
-    private final CommunityRoleRepository communityRoleRepository;
+//    private final CommunityRoleRepository communityRoleRepository;
     private final PostRoleRepository postRoleRepository;
     @Transactional
     public boolean hasAnyRoleInCommunity(Role... roles) {
         final UUID userId = (UUID) ((MainAuthentication) SecurityContextHolder.getContext().getAuthentication()).getPrincipal();
-        final Set<CommunityRoleType> communityRoleTypes = communityRoleRepository.findCommunityRolesByUserId(userId);
+//        final Set<CommunityRoleType> communityRoleTypes = communityRoleRepository.findCommunityRolesByUserId(userId);
         return true;
     }
 
