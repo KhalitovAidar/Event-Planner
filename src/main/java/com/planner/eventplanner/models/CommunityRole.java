@@ -17,8 +17,8 @@ public class CommunityRole {
     @ManyToOne(fetch = FetchType.LAZY)
     private User user;
 
-    @ManyToOne(fetch = FetchType.LAZY)
-    private Community community;
+//    @ManyToOne(fetch = FetchType.LAZY)
+//    private Community community;
 
     @Enumerated(EnumType.STRING)
     private CommunityRoleType type;

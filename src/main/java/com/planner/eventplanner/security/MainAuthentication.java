@@ -1,4 +1,4 @@
-package com.planner.eventplanner;
+package com.planner.eventplanner.security;
 
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;

@@ -1,7 +1,6 @@
 package com.planner.eventplanner.security;
 
 
-import com.planner.eventplanner.MainAuthentication;
 import com.planner.eventplanner.models.User;
 import com.planner.eventplanner.repositories.UserRepository;
 import lombok.RequiredArgsConstructor;

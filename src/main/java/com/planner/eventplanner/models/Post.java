@@ -4,8 +4,11 @@ import jakarta.persistence.*;
 import lombok.Data;
 import org.hibernate.annotations.GenericGenerator;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.UUID;
 
+import static jakarta.persistence.CascadeType.PERSIST;
 import static jakarta.persistence.FetchType.LAZY;
 
 @Entity
@@ -20,7 +23,10 @@ public class Post {
     @Column(nullable = false)
     private String name;
 
-    @ManyToOne(fetch = LAZY)
-    @JoinColumn(name = "community_id", updatable = false)
-    private Community community;
+    @OneToMany(fetch = LAZY, mappedBy = "post", cascade = PERSIST)
+    private List<PostRole> postRoles = new ArrayList<>();
+
+//    @ManyToOne(fetch = LAZY)
+//    @JoinColumn(name = "community_id", updatable = false)
+//    private Community community;
 }
