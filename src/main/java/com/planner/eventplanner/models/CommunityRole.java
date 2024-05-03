@@ -6,6 +6,7 @@ import org.hibernate.annotations.GenericGenerator;
 
 import java.util.UUID;
 
+// TODO: maybe delete this entity
 @Entity
 @Table(name = "community_role")
 public class CommunityRole {
