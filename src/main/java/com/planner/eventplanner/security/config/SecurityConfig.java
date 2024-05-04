@@ -33,9 +33,8 @@ public class SecurityConfig {
         http.authorizeHttpRequests(request -> request
                         .requestMatchers(PERMIT_ALL).permitAll()
                         .anyRequest().authenticated())
-             .sessionManagement(manager -> manager.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
+             .sessionManagement(manager -> manager.sessionCreationPolicy(SessionCreationPolicy.ALWAYS))
              .authenticationProvider(authenticationProvider);
-//                .addFilterBefore(jwtAuthenticationFilter, UsernamePasswordAuthenticationFilter.class);
         return http.build();
     }
 }

@@ -16,10 +16,8 @@ public class CommunityRole {
     private UUID id;
 
     @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "user_id")
     private User user;
-
-//    @ManyToOne(fetch = FetchType.LAZY)
-//    private Community community;
 
     @Enumerated(EnumType.STRING)
     private CommunityRoleType type;

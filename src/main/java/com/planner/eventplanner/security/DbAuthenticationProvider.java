@@ -4,6 +4,7 @@ package com.planner.eventplanner.security;
 import com.planner.eventplanner.models.User;
 import com.planner.eventplanner.repositories.UserRepository;
 import lombok.RequiredArgsConstructor;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.AuthenticationProvider;
 import org.springframework.security.authentication.AuthenticationServiceException;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
@@ -23,7 +24,8 @@ public class DbAuthenticationProvider implements AuthenticationProvider {
         final var password = authentication.getCredentials().toString();
         final var userId = authentication.getPrincipal();
 
-        User user = userRepository.findById((UUID) userId).orElseThrow(() -> new AuthenticationServiceException("User not found"));
+        User user = userRepository.
+                findUserById((UUID) userId).orElseThrow(() -> new AuthenticationServiceException("User not found"));
 
         // TODO: change to real password check
         if (!user.getPassword().equals(password)) {

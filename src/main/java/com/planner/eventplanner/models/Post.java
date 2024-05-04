@@ -25,8 +25,4 @@ public class Post {
 
     @OneToMany(fetch = LAZY, mappedBy = "post", cascade = PERSIST)
     private List<PostRole> postRoles = new ArrayList<>();
-
-//    @ManyToOne(fetch = LAZY)
-//    @JoinColumn(name = "community_id", updatable = false)
-//    private Community community;
 }
